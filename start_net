@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ethX="$(ip addr show | grep -Po "eth\d+" | sort -u)"
+
+#service network-manager stop
+for eth in $ethX
+do
+    drv="$(ethtool -i $eth | grep driver | grep -Po "r8152|asix")"
+    if [[ "x$drv" != "x"  ]]
+    then
+        dhclient $eth >/dev/null 2>/dev/null
+        break
+    fi
+done
+

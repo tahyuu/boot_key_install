@@ -1,0 +1,10 @@
+[Unit]
+Description=Get IP address automatically from DHCP server
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/start_net
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,4 @@
+
+#dmidecode -t bios | grep sion
+./afulnx_64 S815G200.bin /p /b /n /x
+#dmidecode -t bios | grep sion

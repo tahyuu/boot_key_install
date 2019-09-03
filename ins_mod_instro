@@ -1,0 +1,25 @@
+ROOT> /usr/src/linux-headers-4.4.0-148-generic/scripts/sign-file sha256 /root/Lotus/FW/test_bootloader.key /root/Lotus/FW/test_bootloader.cer mods.ko
+ROOT> /usr/src/linux-headers-4.4.0-148-generic/scripts/sign-file sha256 /root/Lotus/FW/test_bootloader.key /root/Lotus/FW/test_bootloader.cer mods_debugfs.o
+ROOT> /usr/src/linux-headers-4.4.0-148-generic/scripts/sign-file sha256 /root/Lotus/FW/test_bootloader.key /root/Lotus/FW/test_bootloader.cer mods_acpi.o
+ROOT> insmod *.o
+insmod: ERROR: could not insert module mods_acpi.o: Invalid module format
+ROOT> insmod 
+mods_acpi.o     mods_debugfs.o  mods_irq.o      mods.ko         mods_krnl.o     mods_mem.o      mods.mod.o      mods.o          mods_pci.o      .tmp_versions/  
+ROOT> insmod mods_acpi.o 
+insmod: ERROR: could not insert module mods_acpi.o: Invalid module format
+ROOT> insmod mods_debugfs.o 
+insmod: ERROR: could not insert module mods_debugfs.o: Invalid module format
+ROOT> insmod mods_irq.o 
+insmod: ERROR: could not insert module mods_irq.o: Invalid module format
+ROOT> insmod mods.ko
+ROOT> insmod mods_krnl.o 
+insmod: ERROR: could not insert module mods_krnl.o: Invalid module format
+ROOT> insmod mods_mem.o
+insmod: ERROR: could not insert module mods_mem.o: Invalid module format
+ROOT> insmod mods_mod.o
+insmod: ERROR: could not load module mods_mod.o: No such file or directory
+ROOT> insmod mods.o
+insmod: ERROR: could not insert module mods.o: Invalid module format
+ROOT> insmod mods_pci.o 
+insmod: ERROR: could not insert module mods_pci.o: Invalid module format
+

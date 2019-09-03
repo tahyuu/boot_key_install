@@ -1,0 +1,5 @@
+cp start_net /etc/init.d/start_net
+cd /etc/init.d
+update-rc.d start_net defaults 90
+cd ~/Lotus
+

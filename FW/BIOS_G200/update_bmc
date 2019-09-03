@@ -1,0 +1,9 @@
+
+#dmidecode -t bios | grep sion
+ipmitool lan print 1| grep 'MAC Address'> ~/mac.log
+./socflash_x64 if=V0005.ima
+#dmidecode -t bios | grep sion
+######################################
+#update bmc mac
+#./isc_ipmitool isc modmac 1 0xc4 0x00 0xad 0x38 0xb6 0x4b
+#./isc_ipmitool isc modmac 1 

@@ -1,0 +1,77 @@
+#sudo apt-get update
+#update kernel
+#sudo dpkg -i *.deb
+
+#sudo apt-get -y install git openssh-server vim python-tk python-pip iperf3 ipmitool sg3-utils smartmontools minicom
+####################################################
+#install tools
+####################################################
+dhclient
+sudo apt-get -y install git iperf3 numactl mcelog openssh-server libaio-dev vim python-tk python-pip ipmitool sg3-utils smartmontools minicom systemd
+
+####################################################
+#pip install pyserial
+####################################################
+pip install pyserial-3.4-py2.py3-none-any.whl
+
+####################################################
+#update env setting up for system
+####################################################
+cat bash_profile >> ~/.bashrc
+source ~/.bashrc
+
+####################################################
+#change /etc/init/tty1.conf
+#make root can be remote access
+####################################################
+sed -i 's/exec \/sbin\/getty -8 38400 tty1/exec \/sbin\/getty -8 38400 tty1 -a root/g' /etc/init/tty1.conf
+
+####################################################
+#change PermitRootLogin without-password to yes
+#make root can be remote access
+####################################################
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+####################################################
+#install iperf3
+#
+####################################################
+apt-get remove -y libiperf0 iperf3 network-manager
+rm -rf iperf-3.1.3
+tar xf iperf-3.1.3-source.tar.gz
+cd iperf-3.1.3
+./configure
+make
+make install
+cd ..
+
+apt-get install -y iperf3
+####################################################
+#make the netport enable once bootup
+####################################################
+cd ~/Lotus
+cp sas3ircu /usr/local/bin
+####################################################
+#make the netport enable once bootup
+####################################################
+#systemctl disable network-manager
+#cp start_net /usr/bin/start_net
+#cp start_net.service /etc/systemd/system/start_net.service
+#systemctl enable start_net
+cp start_net /etc/init.d/start_net
+cd /etc/init.d
+update-rc.d start_net defaults 90
+cd ~/Lotus
+#ech0 "auto eth10" >> /etc/network/interfaces
+#ech0 "iface eth10 inet loopback" >> /etc/network/interfaces
+
+
+####################################################
+#update BIOS
+####################################################
+dmidecode -t bios | grep sion
+#cd AfuLnx64
+#./afulnx_64 /MAKEDRV KERNEL=/lib/modules/$(uname -r)/build
+#/usr/src/linux-headers-4.4.0-142-generic/scripts/sign-file sha256 test_bootloader.key test_bootloader.cer amifldrv_mod.o
+#insmod amifldrv_mod.o
+#./afulnx_64 S815F200.BIN /p /b /n 
